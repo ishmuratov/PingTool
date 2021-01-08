@@ -1,0 +1,11 @@
+D:\CSharp\Projects\PingTool\PingTool\bin\Debug\PingTool.exe.config
+D:\CSharp\Projects\PingTool\PingTool\bin\Debug\PingTool.exe
+D:\CSharp\Projects\PingTool\PingTool\bin\Debug\PingTool.pdb
+D:\CSharp\Projects\PingTool\PingTool\obj\Debug\PingTool.csprojAssemblyReference.cache
+D:\CSharp\Projects\PingTool\PingTool\obj\Debug\PingTool.Form1.resources
+D:\CSharp\Projects\PingTool\PingTool\obj\Debug\PingTool.Properties.Resources.resources
+D:\CSharp\Projects\PingTool\PingTool\obj\Debug\PingTool.csproj.GenerateResource.cache
+D:\CSharp\Projects\PingTool\PingTool\obj\Debug\PingTool.csproj.CoreCompileInputs.cache
+D:\CSharp\Projects\PingTool\PingTool\obj\Debug\PingTool.exe
+D:\CSharp\Projects\PingTool\PingTool\obj\Debug\PingTool.pdb
+D:\CSharp\Projects\PingTool\PingTool\obj\Debug\PingTool.AddHost.resources
