@@ -12,14 +12,16 @@ namespace PingTool
         public string IP { get; set; }
         public string Name { get; set; }
         public string Comment { get; }
-        public int offlineCounter { get; set; }
+        public int OfflineCounter { get; set; }
+        public bool MailIsSend { get; set; }
 
         public Host(string _ip, string _name, string _comment = "")
         {
             IP = _ip;
             Name = _name;
             Comment = _comment;
-            offlineCounter = 0;
+            OfflineCounter = 0;
+            MailIsSend = false;
         }
 
     }

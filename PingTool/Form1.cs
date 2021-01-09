@@ -64,11 +64,11 @@ namespace PingTool
             {
                 if (!Pinger.PingHost(hosts.HostsList[i].IP))
                 {
-                    ++hosts.HostsList[i].offlineCounter;
+                    ++hosts.HostsList[i].OfflineCounter;
                 }
                 else
                 {
-                    hosts.HostsList[i].offlineCounter = 0;
+                    hosts.HostsList[i].OfflineCounter = 0;
                 }
             }
         }

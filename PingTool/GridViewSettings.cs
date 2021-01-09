@@ -44,15 +44,20 @@ namespace PingTool
             {
                 newRow[0] = anyNote.IP;
                 newRow[1] = anyNote.Name;
-                if (anyNote.offlineCounter >= 2)
+                if (anyNote.OfflineCounter >= 2)
                 {
                     newRow[2] = "Не отвечает";
                     statusCellColor = Color.Orange;
                     Logger.Log($"{DateTime.Now.ToString()}: Хост {anyNote.IP} / {anyNote.Name} не отвечает!");
-                    SendMail("Problem detected!", $"{DateTime.Now.ToString()}: Хост {anyNote.IP} / {anyNote.Name} не отвечает!");
+                    if (!anyNote.MailIsSend)
+                    {
+                        SendMail("Problem detected!", $"{DateTime.Now.ToString()}: Хост {anyNote.IP} / {anyNote.Name} не отвечает!");
+                        anyNote.MailIsSend = true;
+                    }
                 }
                 else
                 {
+                    anyNote.MailIsSend = false;
                     newRow[2] = "OK!";
                     statusCellColor = Color.White;
                 }
@@ -68,7 +73,8 @@ namespace PingTool
             Letter testLetter = new Letter();
             testLetter.Subject = _subject;
             testLetter.Body = _text;
-            //MailSender ms = new MailSender("your_mail_from@gmail.com", "your_password_from", "your_mail_to", testLetter);
+            MailSender ms = new MailSender(AppSettings.MAIL_FROM,
+                AppSettings.MAIL_PASSWORD_FROM, AppSettings.MAIL_TO, testLetter);
         }
     }
 }
