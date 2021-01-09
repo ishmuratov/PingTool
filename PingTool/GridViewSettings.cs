@@ -49,6 +49,7 @@ namespace PingTool
                     newRow[2] = "Не отвечает";
                     statusCellColor = Color.Orange;
                     Logger.Log($"{DateTime.Now.ToString()}: Хост {anyNote.IP} / {anyNote.Name} не отвечает!");
+                    SendMail("Problem detected!", $"{DateTime.Now.ToString()}: Хост {anyNote.IP} / {anyNote.Name} не отвечает!");
                 }
                 else
                 {
@@ -62,5 +63,12 @@ namespace PingTool
             myDataGrid.ClearSelection();
         }
 
+        public static void SendMail(string _subject, string _text)
+        {
+            Letter testLetter = new Letter();
+            testLetter.Subject = _subject;
+            testLetter.Body = _text;
+            //MailSender ms = new MailSender("your_mail_from@gmail.com", "your_password_from", "your_mail_to", testLetter);
+        }
     }
 }

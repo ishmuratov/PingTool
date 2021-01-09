@@ -64,7 +64,9 @@
     <Compile Include="Host.cs" />
     <Compile Include="Hosts.cs" />
     <Compile Include="Interfaces\IData.cs" />
+    <Compile Include="Letter.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="MailSender.cs" />
     <Compile Include="Pinger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
