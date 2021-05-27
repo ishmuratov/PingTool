@@ -13,7 +13,8 @@ namespace PingTool
         public string Name { get; set; }
         public string Comment { get; }
         public int OfflineCounter { get; set; }
-        public bool MailIsSend { get; set; }
+        public bool FailMailSended { get; set; }
+        public bool OKMailNeed { get; set; }
 
         public Host(string _ip, string _name, string _comment = "")
         {
@@ -21,7 +22,7 @@ namespace PingTool
             Name = _name;
             Comment = _comment;
             OfflineCounter = 0;
-            MailIsSend = false;
+            FailMailSended = false;
         }
 
     }

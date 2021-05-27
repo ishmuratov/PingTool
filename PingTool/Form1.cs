@@ -83,9 +83,12 @@ namespace PingTool
         {
             AddHost addHost = new AddHost();
             addHost.ShowDialog();
-            hosts.HostsList.Add(addHost.NewHost);
-            GridViewSettings.ViewNotes(MainDataGridView, hosts.HostsList);
-            FileWorker.SaveToFile(hosts, "hosts.txt");
+            if (addHost.NewHost != null)
+            {
+                hosts.HostsList.Add(addHost.NewHost);
+                GridViewSettings.ViewNotes(MainDataGridView, hosts.HostsList);
+                FileWorker.SaveToFile(hosts, "hosts.txt");
+            }
         }
 
         private void btDeleteHost_Click(object sender, EventArgs e)

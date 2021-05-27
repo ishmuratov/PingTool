@@ -49,17 +49,23 @@ namespace PingTool
                     newRow[2] = "Не отвечает";
                     statusCellColor = Color.Orange;
                     Logger.Log($"{DateTime.Now.ToString()}: Хост {anyNote.IP} / {anyNote.Name} не отвечает!");
-                    if (!anyNote.MailIsSend)
+                    if (!anyNote.FailMailSended)
                     {
                         SendMail("Problem detected!", $"{DateTime.Now.ToString()}: Хост {anyNote.IP} / {anyNote.Name} не отвечает!");
-                        anyNote.MailIsSend = true;
+                        anyNote.FailMailSended = true;
+                        anyNote.OKMailNeed = true;
                     }
                 }
                 else
                 {
-                    anyNote.MailIsSend = false;
+                    anyNote.FailMailSended = false;
                     newRow[2] = "OK!";
                     statusCellColor = Color.White;
+                    if (anyNote.OKMailNeed)
+                    {
+                        SendMail("Problem resolved!", $"{DateTime.Now.ToString()}: Хост {anyNote.IP} / {anyNote.Name} снова в работе!");
+                        anyNote.OKMailNeed = false;
+                    }
                 }
                 myDataGrid.Rows.Add(newRow);
                 myDataGrid.Rows[myDataGrid.Rows.Count - 1].DefaultCellStyle.BackColor = statusCellColor;
@@ -73,8 +79,11 @@ namespace PingTool
             Letter testLetter = new Letter();
             testLetter.Subject = _subject;
             testLetter.Body = _text;
-            MailSender ms = new MailSender(AppSettings.MAIL_FROM,
-                AppSettings.MAIL_PASSWORD_FROM, AppSettings.MAIL_TO, testLetter);
+            if (AppSettings.MAIL_FROM != "" && AppSettings.MAIL_PASSWORD_FROM != "" && AppSettings.MAIL_TO != "")
+            {
+                MailSender ms = new MailSender(AppSettings.MAIL_FROM,
+                    AppSettings.MAIL_PASSWORD_FROM, AppSettings.MAIL_TO, testLetter);
+            }
         }
     }
 }
