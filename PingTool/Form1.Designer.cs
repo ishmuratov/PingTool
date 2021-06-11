@@ -37,6 +37,7 @@
             this.btDeleteHost = new System.Windows.Forms.Button();
             this.btEditHost = new System.Windows.Forms.Button();
             this.btOpenLog = new System.Windows.Forms.Button();
+            this.btSettings = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.MainDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,7 +65,7 @@
             this.MainDataGridView.Name = "MainDataGridView";
             this.MainDataGridView.ReadOnly = true;
             this.MainDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.MainDataGridView.Size = new System.Drawing.Size(629, 426);
+            this.MainDataGridView.Size = new System.Drawing.Size(629, 369);
             this.MainDataGridView.TabIndex = 0;
             // 
             // ViewTimer
@@ -105,7 +106,7 @@
             // 
             // btOpenLog
             // 
-            this.btOpenLog.Location = new System.Drawing.Point(647, 415);
+            this.btOpenLog.Location = new System.Drawing.Point(647, 358);
             this.btOpenLog.Name = "btOpenLog";
             this.btOpenLog.Size = new System.Drawing.Size(141, 23);
             this.btOpenLog.TabIndex = 4;
@@ -113,11 +114,22 @@
             this.btOpenLog.UseVisualStyleBackColor = true;
             this.btOpenLog.Click += new System.EventHandler(this.btOpenLog_Click);
             // 
+            // btSettings
+            // 
+            this.btSettings.Location = new System.Drawing.Point(647, 329);
+            this.btSettings.Name = "btSettings";
+            this.btSettings.Size = new System.Drawing.Size(141, 23);
+            this.btSettings.TabIndex = 5;
+            this.btSettings.Text = "Настройки";
+            this.btSettings.UseVisualStyleBackColor = true;
+            this.btSettings.Click += new System.EventHandler(this.btSettings_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 392);
+            this.Controls.Add(this.btSettings);
             this.Controls.Add(this.btOpenLog);
             this.Controls.Add(this.btEditHost);
             this.Controls.Add(this.btDeleteHost);
@@ -143,6 +155,7 @@
         private System.Windows.Forms.Button btDeleteHost;
         private System.Windows.Forms.Button btEditHost;
         private System.Windows.Forms.Button btOpenLog;
+        private System.Windows.Forms.Button btSettings;
     }
 }
 

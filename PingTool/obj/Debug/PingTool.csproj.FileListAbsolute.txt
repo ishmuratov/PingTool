@@ -20,3 +20,4 @@ D:\CSharp\Projects\Desktop\PingTool\PingTool\PingTool\obj\Debug\PingTool.csproj.
 D:\CSharp\Projects\Desktop\PingTool\PingTool\PingTool\obj\Debug\PingTool.csproj.CoreCompileInputs.cache
 D:\CSharp\Projects\Desktop\PingTool\PingTool\PingTool\obj\Debug\PingTool.exe
 D:\CSharp\Projects\Desktop\PingTool\PingTool\PingTool\obj\Debug\PingTool.pdb
+D:\CSharp\Projects\Desktop\PingTool\PingTool\PingTool\obj\Debug\PingTool.SettingsForm.resources

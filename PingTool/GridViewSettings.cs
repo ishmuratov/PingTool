@@ -35,7 +35,7 @@ namespace PingTool
         }
 
         // View all notes in GrigView
-        public static void ViewNotes(DataGridView myDataGrid, List<Host> _data)
+        public static void ViewNotes(DataGridView myDataGrid, List<Host> _data, AppSettings mailSettings)
         {
             Color statusCellColor;
             myDataGrid.Rows.Clear();
@@ -51,7 +51,7 @@ namespace PingTool
                     Logger.Log($"{DateTime.Now.ToString()}: Хост {anyNote.IP} / {anyNote.Name} не отвечает!");
                     if (!anyNote.FailMailSended)
                     {
-                        SendMail("Problem detected!", $"{DateTime.Now.ToString()}: Хост {anyNote.IP} / {anyNote.Name} не отвечает!");
+                        SendMail("Problem detected!", $"{DateTime.Now.ToString()}: Хост {anyNote.IP} / {anyNote.Name} не отвечает!", mailSettings);
                         anyNote.FailMailSended = true;
                         anyNote.OKMailNeed = true;
                     }
@@ -63,7 +63,7 @@ namespace PingTool
                     statusCellColor = Color.White;
                     if (anyNote.OKMailNeed)
                     {
-                        SendMail("Problem resolved!", $"{DateTime.Now.ToString()}: Хост {anyNote.IP} / {anyNote.Name} снова в работе!");
+                        SendMail("Problem resolved!", $"{DateTime.Now.ToString()}: Хост {anyNote.IP} / {anyNote.Name} снова в работе!", mailSettings);
                         anyNote.OKMailNeed = false;
                     }
                 }
@@ -74,15 +74,17 @@ namespace PingTool
             myDataGrid.ClearSelection();
         }
 
-        public static void SendMail(string _subject, string _text)
+        public static void SendMail(string _subject, string _text, AppSettings mailSettings)
         {
+            if (mailSettings.MAIL_DISABLED)
+                return;
             Letter testLetter = new Letter();
             testLetter.Subject = _subject;
             testLetter.Body = _text;
-            if (AppSettings.MAIL_FROM != "" && AppSettings.MAIL_PASSWORD_FROM != "" && AppSettings.MAIL_TO != "")
+            if (mailSettings.MAIL_FROM != "" && mailSettings.MAIL_PASSWORD_FROM != "" && mailSettings.MAIL_TO != "")
             {
-                MailSender ms = new MailSender(AppSettings.MAIL_FROM,
-                    AppSettings.MAIL_PASSWORD_FROM, AppSettings.MAIL_TO, testLetter);
+                MailSender ms = new MailSender(mailSettings.MAIL_FROM,
+                    mailSettings.MAIL_PASSWORD_FROM, mailSettings.MAIL_TO, testLetter);
             }
         }
     }

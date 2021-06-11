@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace PingTool
@@ -9,6 +10,7 @@ namespace PingTool
     public partial class Form1 : Form
     {
         Hosts hosts = (Hosts)FileWorker.LoadFromFile("hosts.txt");
+        AppSettings globalSettings = (AppSettings)FileWorker.LoadFromFile("settings.ini");
         System.Timers.Timer aTimer;
 
         public Form1()
@@ -24,12 +26,17 @@ namespace PingTool
             {
                 hosts = new Hosts();
             }
+
+            if (globalSettings == null)
+            {
+                globalSettings = new AppSettings();
+            }
             
             // setup grid settings
             GridViewSettings.Setup(MainDataGridView, Color.Green);
             if (hosts.HostsList.Count != 0)
             {
-                GridViewSettings.ViewNotes(MainDataGridView, hosts.HostsList);
+                GridViewSettings.ViewNotes(MainDataGridView, hosts.HostsList, globalSettings);
             }
             SetTimer();
         }
@@ -40,7 +47,7 @@ namespace PingTool
         {
             if (hosts.HostsList.Count != 0)
             {
-                GridViewSettings.ViewNotes(MainDataGridView, hosts.HostsList);
+                GridViewSettings.ViewNotes(MainDataGridView, hosts.HostsList, globalSettings);
             }
             if (Logger.LogChanged)
             {
@@ -51,7 +58,7 @@ namespace PingTool
         private void SetTimer()
         {
             // Create a timer with a two second interval.
-            aTimer = new System.Timers.Timer(AppSettings.PING_REFRESH_TIME);
+            aTimer = new System.Timers.Timer(globalSettings.PING_REFRESH_TIME);
             // Hook up the Elapsed event for the timer. 
             aTimer.Elapsed += OnTimedEvent;
             aTimer.AutoReset = true;
@@ -86,7 +93,7 @@ namespace PingTool
             if (addHost.NewHost != null)
             {
                 hosts.HostsList.Add(addHost.NewHost);
-                GridViewSettings.ViewNotes(MainDataGridView, hosts.HostsList);
+                GridViewSettings.ViewNotes(MainDataGridView, hosts.HostsList, globalSettings);
                 FileWorker.SaveToFile(hosts, "hosts.txt");
             }
         }
@@ -107,7 +114,7 @@ namespace PingTool
                 if (hostForDeleting != null)
                 {
                     hosts.HostsList.Remove(hostForDeleting);
-                    GridViewSettings.ViewNotes(MainDataGridView, hosts.HostsList);
+                    GridViewSettings.ViewNotes(MainDataGridView, hosts.HostsList, globalSettings);
                     FileWorker.SaveToFile(hosts, "hosts.txt");
                 }
             }
@@ -143,7 +150,7 @@ namespace PingTool
                     {
                         hostForEditing.IP = editHost.NewHost.IP;
                         hostForEditing.Name = editHost.NewHost.Name;
-                        GridViewSettings.ViewNotes(MainDataGridView, hosts.HostsList);
+                        GridViewSettings.ViewNotes(MainDataGridView, hosts.HostsList, globalSettings);
                         FileWorker.SaveToFile(hosts, "hosts.txt");
                     }
                 }
@@ -156,7 +163,19 @@ namespace PingTool
 
         private void btOpenLog_Click(object sender, EventArgs e)
         {
-            Process.Start("log.txt");
+            if (!File.Exists("log.txt"))
+            {
+                MessageBox.Show("Log-файл пуст!");
+            }
+            else
+                Process.Start("log.txt");
+        }
+
+        private void btSettings_Click(object sender, EventArgs e)
+        {
+            SettingsForm settingsForm = new SettingsForm(globalSettings);
+            settingsForm.ShowDialog();
+            globalSettings = (AppSettings)FileWorker.LoadFromFile("settings.ini");
         }
     }
 }
