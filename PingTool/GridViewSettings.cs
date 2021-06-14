@@ -51,7 +51,7 @@ namespace PingTool
                     Logger.Log($"{DateTime.Now.ToString()}: Хост {anyNote.IP} / {anyNote.Name} не отвечает!");
                     if (!anyNote.FailMailSended)
                     {
-                        SendMail("Problem detected!", $"{DateTime.Now.ToString()}: Хост {anyNote.IP} / {anyNote.Name} не отвечает!", mailSettings);
+                        SendMail("Обнаружена проблема!", $"{DateTime.Now.ToString()}: Хост {anyNote.IP} / {anyNote.Name} не отвечает!", mailSettings);
                         anyNote.FailMailSended = true;
                         anyNote.OKMailNeed = true;
                     }
@@ -63,7 +63,8 @@ namespace PingTool
                     statusCellColor = Color.White;
                     if (anyNote.OKMailNeed)
                     {
-                        SendMail("Problem resolved!", $"{DateTime.Now.ToString()}: Хост {anyNote.IP} / {anyNote.Name} снова в работе!", mailSettings);
+                        Logger.Log($"{DateTime.Now.ToString()}: Хост {anyNote.IP} / {anyNote.Name} снова в работе!");
+                        SendMail("Проблема решена!", $"{DateTime.Now.ToString()}: Хост {anyNote.IP} / {anyNote.Name} снова в работе!", mailSettings);
                         anyNote.OKMailNeed = false;
                     }
                 }
@@ -83,8 +84,7 @@ namespace PingTool
             testLetter.Body = _text;
             if (mailSettings.MAIL_FROM != "" && mailSettings.MAIL_PASSWORD_FROM != "" && mailSettings.MAIL_TO != "")
             {
-                MailSender ms = new MailSender(mailSettings.MAIL_FROM,
-                    mailSettings.MAIL_PASSWORD_FROM, mailSettings.MAIL_TO, testLetter);
+                MailSender ms = new MailSender(mailSettings, testLetter);
             }
         }
     }

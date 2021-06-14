@@ -18,5 +18,11 @@ namespace PingTool
         public string MAIL_FROM = "";
         public string MAIL_PASSWORD_FROM = "";
         public string MAIL_TO = "";
+
+        // Mail Server settings
+
+        public string MAIL_SERVER_HOST = "smtp.gmail.com";
+        public int MAIL_SERVER_PORT = 587;
+        public string MAIL_SENDER_NAME = "Zabbix";
     }
 }

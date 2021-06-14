@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.MainDataGridView = new System.Windows.Forms.DataGridView();
             this.ViewTimer = new System.Windows.Forms.Timer(this.components);
             this.btAddHost = new System.Windows.Forms.Button();
@@ -38,7 +39,9 @@
             this.btEditHost = new System.Windows.Forms.Button();
             this.btOpenLog = new System.Windows.Forms.Button();
             this.btSettings = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.MainDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // MainDataGridView
@@ -65,7 +68,7 @@
             this.MainDataGridView.Name = "MainDataGridView";
             this.MainDataGridView.ReadOnly = true;
             this.MainDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.MainDataGridView.Size = new System.Drawing.Size(629, 369);
+            this.MainDataGridView.Size = new System.Drawing.Size(629, 289);
             this.MainDataGridView.TabIndex = 0;
             // 
             // ViewTimer
@@ -106,7 +109,7 @@
             // 
             // btOpenLog
             // 
-            this.btOpenLog.Location = new System.Drawing.Point(647, 358);
+            this.btOpenLog.Location = new System.Drawing.Point(647, 278);
             this.btOpenLog.Name = "btOpenLog";
             this.btOpenLog.Size = new System.Drawing.Size(141, 23);
             this.btOpenLog.TabIndex = 4;
@@ -116,7 +119,7 @@
             // 
             // btSettings
             // 
-            this.btSettings.Location = new System.Drawing.Point(647, 329);
+            this.btSettings.Location = new System.Drawing.Point(647, 249);
             this.btSettings.Name = "btSettings";
             this.btSettings.Size = new System.Drawing.Size(141, 23);
             this.btSettings.TabIndex = 5;
@@ -124,11 +127,22 @@
             this.btSettings.UseVisualStyleBackColor = true;
             this.btSettings.Click += new System.EventHandler(this.btSettings_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(647, 121);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(141, 108);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 392);
+            this.ClientSize = new System.Drawing.Size(800, 323);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btSettings);
             this.Controls.Add(this.btOpenLog);
             this.Controls.Add(this.btEditHost);
@@ -143,6 +157,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.MainDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -156,6 +171,7 @@
         private System.Windows.Forms.Button btEditHost;
         private System.Windows.Forms.Button btOpenLog;
         private System.Windows.Forms.Button btSettings;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

@@ -10,18 +10,18 @@ namespace PingTool
 {
     class MailSender
     {
-        public MailSender(string _fromAddress, string _fromPassword, string _toAddress, Letter _letter)
+        public MailSender(AppSettings mailSettings, Letter _letter)
         {
-            var fromMail = new MailAddress(_fromAddress, "Zabbix");
-            var toMail = new MailAddress(_toAddress, string.Empty);
+            var fromMail = new MailAddress(mailSettings.MAIL_FROM, mailSettings.MAIL_SENDER_NAME);
+            var toMail = new MailAddress(mailSettings.MAIL_TO, string.Empty);
             var smtp = new SmtpClient
             {
-                Host = "smtp.gmail.com",
-                Port = 587,
+                Host = mailSettings.MAIL_SERVER_HOST,
+                Port = mailSettings.MAIL_SERVER_PORT,
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromMail.Address, _fromPassword)
+                Credentials = new NetworkCredential(fromMail.Address, mailSettings.MAIL_PASSWORD_FROM)
             };
             using (var message = new MailMessage(fromMail, toMail)
             {
@@ -32,6 +32,7 @@ namespace PingTool
                 try
                 {
                     smtp.Send(message);
+                    Logger.Log("Уведомление на почту отправлено.");
                 }
                 catch (Exception ex)
                 {

@@ -30,6 +30,7 @@ namespace PingTool
             if (globalSettings == null)
             {
                 globalSettings = new AppSettings();
+                FileWorker.SaveToFile(globalSettings, "settings.ini");
             }
             
             // setup grid settings

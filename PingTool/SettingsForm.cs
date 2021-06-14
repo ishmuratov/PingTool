@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PingTool
@@ -20,6 +13,9 @@ namespace PingTool
             tbMailPassFrom.Text = settings.MAIL_PASSWORD_FROM;
             tbMailAddrTo.Text = settings.MAIL_TO;
             cbMailDisabled.Checked = settings.MAIL_DISABLED;
+            tbServerHost.Text = settings.MAIL_SERVER_HOST;
+            tbServerPort.Text = settings.MAIL_SERVER_PORT.ToString();
+            tbSenderName.Text = settings.MAIL_SENDER_NAME;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -31,6 +27,10 @@ namespace PingTool
             globalSettings.MAIL_PASSWORD_FROM = tbMailPassFrom.Text;
             globalSettings.MAIL_TO = tbMailAddrTo.Text;
             globalSettings.MAIL_DISABLED = cbMailDisabled.Checked;
+            globalSettings.MAIL_SERVER_HOST = tbServerHost.Text;
+            int.TryParse(tbServerPort.Text, out int serverPort);
+            globalSettings.MAIL_SERVER_PORT = serverPort;
+            globalSettings.MAIL_SENDER_NAME = tbSenderName.Text;
             FileWorker.SaveToFile(globalSettings, "settings.ini");
             Close();
         }
